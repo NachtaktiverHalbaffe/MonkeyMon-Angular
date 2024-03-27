@@ -34,12 +34,10 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm install
-      - name: Install angular cli
-        run: npm install @angular/cli
       - name: Build
         run: npm run build
       - name: Deploy to gh pages
-        run: npx angular-cli-ghpages --dir dist/monkeymon/browser --no-nojekyll -n "NachtaktiverHalbaffe" -e "LeMonkay.VTIT@tutanota.com" --no-silent
+        run: npx angular-cli-ghpages --dir dist/monkeymon/browser --no-nojekyll -n "NachtaktiverHalbaffe" -e "LeMonkay.VTIT@tutanota.com"
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
