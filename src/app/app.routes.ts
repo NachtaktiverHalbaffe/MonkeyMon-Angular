@@ -8,7 +8,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
 export const routes: Routes = [
   {
     path: '',
-    component: MonkeymonComponent,
+    redirectTo: 'monkeymon',
+    pathMatch: 'prefix',
     title: 'Home',
   },
   {
