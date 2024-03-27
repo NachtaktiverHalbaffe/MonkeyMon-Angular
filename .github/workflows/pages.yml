@@ -23,9 +23,6 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,14 +35,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: ng build --base-href https://nachtaktiverhalbaffe.github.io/MonkeyMon-Angular/
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3.0.1
-        with:
-          # Upload dist repository
-          path: "./dist/monkeymon/browser"
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4.0.4
+        run: npm run build
+      - name: Deploy to gh pages
+        run: npx angular-cli-ghpages --dir=dist/monkeymon
+        env:
+          CI: true
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
