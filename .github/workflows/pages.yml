@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           # Upload dist repository
-          path: "./dist/browser"
+          path: "./dist/monkeymon/browser"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4.0.4
