@@ -39,7 +39,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy to gh pages
-        run: npx angular-cli-ghpages --dir=dist/monkeymon --no-nojekyll false --dir dist/monkeymon/browser
+        run: npx angular-cli-ghpages --dir dist/monkeymon/browser --no-nojekyll false
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
