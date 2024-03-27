@@ -1,4 +1,6 @@
-<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div
+  [class]="cn('w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700', class)"
+>
   <div
     [class]="'h-2.5 rounded-full ' + color"
     [style]="'width: ' + value + '%'"
