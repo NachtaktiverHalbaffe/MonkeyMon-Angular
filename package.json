@@ -27,6 +27,7 @@
     "embla-carousel-angular": "^14.0.0",
     "embla-carousel-autoplay": "^8.0.0",
     "flowbite": "^2.3.0",
+    "pokedex-promise-v2": "^4.2.0",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^2.2.2",
     "tslib": "^2.3.0",
