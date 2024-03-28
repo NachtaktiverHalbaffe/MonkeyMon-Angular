@@ -1,18 +1,87 @@
-<div class="flex flex-wrap justify-evenly items-center p-4 min-h-screen">
-  <app-mon-card
-    class="w-full xl:w-1/2 min-w-80 sm:min-w-[500px] xl:min-w-[600px]"
-    [mon]="{
-      name: 'Glurak',
-      hp: 78,
-      attack: 84,
-      defense: 78,
-      specialAttack: 109,
-      specialDefense: 85,
-      speed: 100,
-      image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
-      description:
-        'Dieses Pokémon kann mit seinen Flügeln eine Höhe von bis zu 1.400 m erreichen. Es spuckt sehr heißes Feuer.'
-    }"
-  ></app-mon-card>
+<div
+  class="flex flex-col xl:flex-row justify-evenly items-center min-h-screen h-full bg-white dark:bg-neutral-700"
+>
+  <app-carousel
+    carouselClass="w-[96dvw] py-4 sm:min-w-[500px] xl:min-w-[600px] xl:min-w-1/2  xl:w-[48dvw]"
+  >
+    <app-carousel-item carouselItemClass="w-[96dvw] xl:w-full">
+      <app-mon-card
+        class="sm:min-w-[500px] xl:min-w-[600px] xl:w-[48dvw]"
+        [mon]="{
+          name: 'Glurak',
+          hp: 78,
+          attack: 84,
+          defense: 78,
+          specialAttack: 109,
+          specialDefense: 85,
+          speed: 100,
+          image:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+          description:
+            'Dieses Pokémon kann mit seinen Flügeln eine Höhe von bis zu 1.400 m erreichen. Es spuckt sehr heißes Feuer.'
+        }"
+      ></app-mon-card>
+    </app-carousel-item>
+
+    <app-carousel-item carouselItemClass="w-[96dvw] xl:w-full">
+      <app-mon-card
+        class="sm:min-w-[500px] xl:min-w-[600px] xl:w-[48dvw]"
+        [mon]="{
+          name: 'Glurak',
+          hp: 78,
+          attack: 84,
+          defense: 78,
+          specialAttack: 109,
+          specialDefense: 85,
+          speed: 100,
+          image:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+          description:
+            'Dieses Pokémon kann mit seinen Flügeln eine Höhe von bis zu 1.400 m erreichen. Es spuckt sehr heißes Feuer.'
+        }"
+      ></app-mon-card>
+    </app-carousel-item>
+  </app-carousel>
+
+  <app-carousel
+    carouselClass="w-[96dvw] py-4 sm:min-w-[500px] xl:min-w-[600px] xl:min-w-1/2  xl:w-[48dvw]"
+  >
+    <app-carousel-item carouselItemClass="w-[96dvw] xl:w-full">
+      <app-mon-card
+        class="sm:min-w-[500px] xl:min-w-[600px] xl:w-[48dvw]"
+        [mon]="{
+          name: 'Glurak',
+          hp: 78,
+          attack: 84,
+          defense: 78,
+          specialAttack: 109,
+          specialDefense: 85,
+          speed: 100,
+          image:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+          description:
+            'Dieses Pokémon kann mit seinen Flügeln eine Höhe von bis zu 1.400 m erreichen. Es spuckt sehr heißes Feuer.'
+        }"
+      ></app-mon-card>
+    </app-carousel-item>
+
+    <app-carousel-item carouselItemClass="w-[96dvw] xl:w-full">
+      <app-mon-card
+        class="sm:min-w-[500px] xl:min-w-[600px] xl:w-[48dvw]"
+        [mon]="{
+          name: 'Glurak',
+          hp: 78,
+          attack: 84,
+          defense: 78,
+          specialAttack: 109,
+          specialDefense: 85,
+          speed: 100,
+          image:
+            'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+          description:
+            'Dieses Pokémon kann mit seinen Flügeln eine Höhe von bis zu 1.400 m erreichen. Es spuckt sehr heißes Feuer.'
+        }"
+      ></app-mon-card>
+    </app-carousel-item>
+  </app-carousel>
 </div>
