@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
+import { NavbarComponent } from './views/navbar/navbar.component';
+import { FooterComponent } from './views/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
