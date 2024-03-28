@@ -15,26 +15,26 @@ export const routes: Routes = [
   {
     path: 'monkeymon',
     component: MonkeymonComponent,
-    title: 'MonkeyMon',
+    title: 'MonkeyMon Angular - Home',
   },
   {
     path: 'statistics',
     component: StatisticsComponent,
-    title: 'Statistics',
+    title: 'MonkeyMon Angular - Statistics',
   },
   {
     path: 'monkeyapi',
     component: MonkeyapiComponent,
-    title: 'MonkeyAPI',
+    title: 'MonkeyMon Angular - MonkeyAPI',
   },
   {
     path: 'portfolio',
     component: PortfolioComponent,
-    title: 'MonkeyMon Portfolio',
+    title: 'MonkeyMon Angular - MonkeyMon Portfolio',
   },
   {
     path: 'settings',
     component: SettingsComponent,
-    title: 'Settings',
+    title: 'MonkeyMon Angular - Settings',
   },
 ];

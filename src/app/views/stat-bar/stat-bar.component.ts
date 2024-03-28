@@ -18,7 +18,7 @@ export class StatBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.valuePercent = Math.round((this.value / this.maxValue) * 100);
-    console.log(this.valuePercent);
+
     if (this.valuePercent > 90.0) {
       this.color = 'bg-green-900';
     } else if (this.valuePercent > 75.0) {
@@ -26,11 +26,9 @@ export class StatBarComponent implements OnInit {
     } else if (this.valuePercent > 50.0) {
       this.color = 'bg-lime-500';
     } else if (this.valuePercent > 25.0) {
-      this.color = 'bg-orange-700';
+      this.color = 'bg-orange-500';
     } else {
       this.color = 'bg-red-800';
     }
-
-    console.log(this.color);
   }
 }
