@@ -1,7 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
-  content: ["./src/**/*.{html,ts}", "./node_modules/flowbite/**/*.js"],
+  presets: [require("@spartan-ng/ui-core/hlm-tailwind-preset")],
+  content: [
+    "./src/**/*.{html,ts}",
+    "./node_modules/flowbite/**/*.js",
+    "./src/app/components/**/*.{html,ts}",
+  ],
   theme: {
     extend: {
       colors: {

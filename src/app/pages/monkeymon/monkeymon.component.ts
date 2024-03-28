@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
 import { MonCardComponent } from '../../views/mon-card/mon-card.component';
-import { CarouselComponent } from '../../components/carousel/carousel.component';
-import { CarouselItemComponent } from '../../components/carousel-item/carousel-item.component';
+import {
+  HlmCarouselComponent,
+  HlmCarouselContentComponent,
+  HlmCarouselItemComponent,
+} from '../../components/ui-carousel-helm';
 
 @Component({
   selector: 'app-monkeymon',
   standalone: true,
-  imports: [MonCardComponent, CarouselComponent, CarouselItemComponent],
+  imports: [
+    MonCardComponent,
+
+    HlmCarouselComponent,
+    HlmCarouselContentComponent,
+    HlmCarouselItemComponent,
+  ],
   templateUrl: './monkeymon.component.html',
 })
 export class MonkeymonComponent {}
