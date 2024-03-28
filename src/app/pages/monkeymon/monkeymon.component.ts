@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MonCardComponent } from '../../ui/mon-card/mon-card.component';
+import { MonCardComponent } from '../../views/mon-card/mon-card.component';
 
 @Component({
   selector: 'app-monkeymon',
