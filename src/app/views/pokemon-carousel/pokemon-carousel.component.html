@@ -1,0 +1,58 @@
+@if(pokemonsInfiniteQuery.isFetching()){
+<hlm-spinner size="xl"></hlm-spinner>
+} @else if (pokemonsInfiniteQuery.isError()) {
+<div hlmAlert>
+  <hlm-icon hlmAlertIcon name="lucideBox" />
+  <h4 hlmAlertTitle>Couldn't load Pokemons</h4>
+  <p hlmAlertDesc>
+    Couldn't load Pokemons from PokeAPI:
+    {{ pokemonsInfiniteQuery.error()?.message }}
+  </p>
+</div>
+} @else {
+<hlm-carousel>
+  <hlm-carousel-content>
+    @for(pokemonPage of pokemonsInfiniteQuery.data()?.pages; track pokemonPage;
+    let pageIndex = $index) { @for(pokemon of pokemonPage; track pokemon; let
+    index = $index){ @if(pageIndex == pokemonsInfiniteQuery.data()!.pages.length
+    -1 && index == pageSize -1){
+    <hlm-carousel-item>
+      <app-mon-card
+        class="sm:min-w-[500px] xl:min-w-[600px]"
+        inViewport
+        [inViewportOptions]="{ threshold: [0.99] }"
+        (inViewportAction)="fetchNextEntry($event)"
+        [mon]="{
+          name: pokemon.name,
+          hp: pokemon.hp,
+          attack: pokemon.attack,
+          defense: pokemon.defense,
+          specialAttack: pokemon.specialAttack,
+          specialDefense: pokemon.specialDefense,
+          speed: pokemon.speed,
+          image: pokemon.image,
+          description: pokemon.description
+        }"
+      ></app-mon-card>
+    </hlm-carousel-item>
+    } @else {
+    <hlm-carousel-item>
+      <app-mon-card
+        class="sm:min-w-[500px] xl:min-w-[600px]"
+        [mon]="{
+          name: pokemon.name,
+          hp: pokemon.hp,
+          attack: pokemon.attack,
+          defense: pokemon.defense,
+          specialAttack: pokemon.specialAttack,
+          specialDefense: pokemon.specialDefense,
+          speed: pokemon.speed,
+          image: pokemon.image,
+          description: pokemon.description
+        }"
+      ></app-mon-card
+    ></hlm-carousel-item>
+    } } }
+  </hlm-carousel-content>
+</hlm-carousel>
+}
