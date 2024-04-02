@@ -1,0 +1,54 @@
+<div
+  class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse"
+>
+  <button
+    type="button"
+    data-dropdown-toggle="theme-dropdown-menu"
+    class="text-[0rem] md:text-base inline-flex items-center font-medium justify-center px-4 py-2 text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+  >
+    <hlm-icon class="md:me-3" [name]="currentTheme" strokeWidth="2" />
+    Theme
+  </button>
+
+  <div
+    class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
+    id="theme-dropdown-menu"
+  >
+    <ul class="py-2 font-medium" role="none">
+      <li (click)="themeService.toggleDarkMode()">
+        <a
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+          role="menuitem"
+        >
+          <div class="inline-flex items-center me-3">
+            <hlm-icon class="me-3" name="lucideMoon" strokeWidth="2" />
+            Dark-Theme
+          </div>
+        </a>
+      </li>
+      <li (click)="themeService.toggleLightMode()">
+        <a
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+          role="menuitem"
+        >
+          <div class="inline-flex items-center">
+            <hlm-icon class="me-3" name="lucideSun" strokeWidth="2" />
+            Light-Theme
+          </div>
+        </a>
+      </li>
+      <li (click)="themeService.toggleFollowSystemMode()">
+        <a
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+          role="menuitem"
+        >
+          <div class="inline-flex items-center">
+            <hlm-icon class="me-3" name="lucideSunMoon" strokeWidth="2" />
+            Follow System
+          </div>
+        </a>
+      </li>
+      <li></li>
+    </ul>
+  </div>
+</div>

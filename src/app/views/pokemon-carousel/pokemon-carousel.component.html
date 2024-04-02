@@ -10,7 +10,14 @@
   </p>
 </div>
 } @else {
-<hlm-carousel>
+<hlm-carousel
+  [options]="{
+    startIndex:
+      pokemonsInfiniteQuery.data()?.pages != null
+        ? pageSize * ((pokemonsInfiniteQuery.data()?.pages)!.length - 1)
+        : 0
+  }"
+>
   <hlm-carousel-content>
     @for(pokemonPage of pokemonsInfiniteQuery.data()?.pages; track pokemonPage;
     let pageIndex = $index) { @for(pokemon of pokemonPage; track pokemon; let
