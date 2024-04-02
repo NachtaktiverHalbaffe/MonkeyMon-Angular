@@ -2,8 +2,13 @@ import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
 import { Pokemon, PokemonSchema } from '../types/pokemon';
 import Pokedex from 'pokedex-promise-v2';
 import { from } from 'rxjs';
+import {
+  injectInfiniteQuery,
+  injectQuery,
+  injectQueryClient,
+} from '@tanstack/angular-query-experimental';
 
-const pageSize = 10;
+export const pageSize = 10;
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +25,28 @@ export class PokemonApiService {
     this.nextPage = 0;
   }
 
-  getAllPokemon(): WritableSignal<Pokemon[]> {
-    this.#getAllPokemon();
-    return this.data;
+  injectPokemonQuery() {
+    return injectQuery(() => ({
+      queryKey: ['pokemons'],
+      queryFn: () => this.#getAllPokemon(),
+      staleTime: Infinity,
+    }));
   }
 
-  async #getAllPokemon() {
+  injectPokemonInfiniteQuery() {
+    return injectInfiniteQuery(() => ({
+      queryKey: ['pokemons-pageable'],
+      queryFn: async ({ pageParam }) => {
+        this.currentPage = pageParam;
+        return await this.#getPokemonPage();
+      },
+      initialPageParam: 0,
+      getNextPageParam: () => this.nextPage,
+      staleTime: Infinity,
+    }));
+  }
+
+  async #getAllPokemon(): Promise<Pokemon[]> {
     try {
       const pokemonListResponse = await this.pokedexApi.getPokemonsList();
       const pokemons = await Promise.all(
@@ -36,9 +57,10 @@ export class PokemonApiService {
         })
       );
       // return pokemons;
-      this.data.set(pokemons.sort((a, b) => a.id - b.id));
+      return pokemons.sort((a, b) => a.id - b.id);
     } catch (error) {
       console.debug(error);
+      return [];
     }
   }
 
@@ -87,22 +109,17 @@ export class PokemonApiService {
     return PokemonSchema.parse(pokemon);
   }
 
-  getNextPage(): WritableSignal<Pokemon[]> {
-    this.#getPokemonPage();
-    return this.data;
-  }
-
-  async #getPokemonPage() {
-    if (this.nextPage == null) {
+  async #getPokemonPage(): Promise<Pokemon[]> {
+    if (this.currentPage == null) {
       console.warn('No more Pokemon data avaible, aborting fetching page');
-      return;
+      return [];
     }
 
-    console.debug('Fetching pokeapi with page ', this.nextPage);
+    console.debug('Fetching pokeapi with page ', this.currentPage);
 
     try {
       const pokemonListResponse = await this.pokedexApi.getPokemonsList({
-        offset: pageSize * this.nextPage,
+        offset: pageSize * this.currentPage,
         limit: pageSize,
       });
 
@@ -113,18 +130,16 @@ export class PokemonApiService {
           return singlePokemon;
         })
       );
-      this.currentPage = this.nextPage;
+
       this.nextPage = pokemons.length < pageSize ? null : this.currentPage + 1;
-      this.data.update((prevData) => [
-        ...prevData,
-        ...pokemons.sort((a, b) => a.id - b.id),
-      ]);
+      return pokemons.sort((a, b) => a.id - b.id);
     } catch (error) {
       console.warn(error);
+      return [];
     }
   }
 
-  async getNrOfAvailbePokemon(): Promise<number> {
+  async #getNrOfAvailbePokemon(): Promise<number> {
     try {
       return (await this.pokedexApi.getPokemonsList()).count;
     } catch (error) {
