@@ -1,0 +1,26 @@
+<app-card
+  className="w-auto h-fit bg-[url('arena_background.jpg')] bg-cover shadow-lg"
+>
+  <div className="relative overflow-hidden py-56 sm:py-96">
+    <div>
+      <!-- Figher -->
+      <app-battle-sprite
+        [src]="
+          fighter?.mon?.image ??
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png'
+        "
+        alignment="left-bottom"
+      />
+      <!--Opponent  -->
+      <app-battle-sprite
+        [src]="
+          opponent?.mon?.image ??
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/0.png'
+        "
+        alignment="right-top"
+      />
+
+      <app-battle-stats [fighter]="fighter" [opponent]="opponent" />
+    </div>
+  </div>
+</app-card>
