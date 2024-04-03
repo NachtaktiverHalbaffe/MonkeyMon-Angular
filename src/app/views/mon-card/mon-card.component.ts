@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { StatBarComponent } from '../stat-bar/stat-bar.component';
 import { CardComponent } from '../../components/card/card.component';
 import { AvatarComponent } from '../../components/avatar/avatar.component';
@@ -7,6 +7,9 @@ import clsx, { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Mon } from '../../types/mon';
 import { OutlinedButtonComponent } from '../../components/outlined-button/outlined-button.component';
+import { BattleEngineService } from '../../services/battleengine-service.service';
+import { toast } from 'ngx-sonner';
+import { isPokemon } from '../../types/pokemon';
 
 @Component({
   selector: 'app-mon-card',
@@ -23,18 +26,37 @@ import { OutlinedButtonComponent } from '../../components/outlined-button/outlin
 export class MonCardComponent {
   @Input({ required: true }) mon!: Mon;
   @Input() class?: string;
+  arenaService: BattleEngineService = inject(BattleEngineService);
 
   cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
   }
 
   sendFighter() {
-    // TODO Arena logic
-    console.log('Sending fighter to arena');
+    this.arenaService.setFighter(this.mon);
+    toast(
+      `${isPokemon(this.mon) ? 'Pokemon' : 'Monkey'} has been sent to Arena`,
+      {
+        description: `${this.mon.name} has been selected as the fighter`,
+        action: {
+          label: 'Ok',
+          onClick: () => {},
+        },
+      }
+    );
   }
 
   sendOpponent() {
-    // TODO Arena logic
-    console.log('Sending opponent to arena');
+    this.arenaService.setOpponent(this.mon);
+    toast(
+      `${isPokemon(this.mon) ? 'Pokemon' : 'Monkey'} has been sent to Arena`,
+      {
+        description: `${this.mon.name} has been selected as the opponent`,
+        action: {
+          label: 'Ok',
+          onClick: () => {},
+        },
+      }
+    );
   }
 }

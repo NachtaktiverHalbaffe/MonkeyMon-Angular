@@ -1,6 +1,16 @@
 <div
-  class="flex flex-col xl:flex-row justify-evenly items-center min-h-screen max-w-screen bg-white dark:bg-neutral-700"
+  class="flex flex-col justify-evenly min-h-screen max-w-screen bg-white dark:bg-neutral-700"
 >
-  <app-pokemon-carousel class="w-full xl:w-1/2 p-4"></app-pokemon-carousel>
-  <app-pokemon-carousel class="w-full xl:w-1/2 p-4"></app-pokemon-carousel>
+  <div
+    class="flex flex-col xl:flex-row justify-evenly items-center w-full h-full"
+  >
+    <app-pokemon-carousel
+      class="w-full h-full xl:w-1/2 p-4"
+    ></app-pokemon-carousel>
+    <app-pokemon-carousel
+      class="w-full h-full xl:w-1/2 p-4"
+    ></app-pokemon-carousel>
+  </div>
+
+  <app-arena></app-arena>
 </div>

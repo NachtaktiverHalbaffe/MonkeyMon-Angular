@@ -11,6 +11,8 @@ module.exports = {
     extend: {
       colors: {
         selected: "#D97706",
+        "battle-box": "#FFFFDD",
+        "battle-box-dark": "#E7D6B3",
       },
     },
   },
