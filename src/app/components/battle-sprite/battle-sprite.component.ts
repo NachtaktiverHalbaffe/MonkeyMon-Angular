@@ -1,17 +1,32 @@
-import { Component, HostListener, Input } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  computed,
+  input,
+} from '@angular/core';
 import { TrimmedImageComponent } from '../trimmed-image/trimmed-image.component';
+import { hlm } from '@spartan-ng/ui-core';
+import { ClassValue } from 'clsx';
 
 @Component({
   selector: 'app-battle-sprite',
   standalone: true,
   imports: [TrimmedImageComponent],
   templateUrl: './battle-sprite.component.html',
+  host: {
+    '[class]': '_computedClass()',
+  },
 })
-export class BattleSpriteComponent {
-  @Input({ required: true }) src!: string;
+export class BattleSpriteComponent implements OnInit {
+  public readonly src = input<string>('');
   @Input() alignment: 'left-bottom' | 'right-top' = 'left-bottom';
 
-  posXLeft = -10;
+  _userClass = input<ClassValue>('', { alias: 'class' });
+  protected _computedClass = computed(() => hlm(this._userClass()));
+
+  posXLeft = 10;
   posYBottom = 450;
   posYTop = -180;
   size: { width: number; height: number };
@@ -43,6 +58,11 @@ export class BattleSpriteComponent {
     }
   }
 
+  ngOnInit(): void {
+    this.size = { width: window.innerWidth, height: window.innerHeight };
+    this.calculatePos();
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.size = { width: window.innerWidth, height: window.innerHeight };
@@ -52,7 +72,7 @@ export class BattleSpriteComponent {
   calculatePos() {
     if (this.size.width != null) {
       const newWidthLimit =
-        this.size.width > 640 ? this.size.width - 300 : this.size.width - 260;
+        this.size.width > 640 ? this.size.width - 240 : this.size.width - 220;
 
       if (this.size.width > 640) {
         if (newWidthLimit < this.position.x || this.alignment === 'right-top') {

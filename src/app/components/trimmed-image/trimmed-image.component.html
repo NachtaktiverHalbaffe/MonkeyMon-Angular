@@ -1,5 +1,6 @@
-@if(true){
-<hlm-spinner></hlm-spinner>
+@if(trimmedImageUrl()){
+<img [src]="trimmedImageUrl()" [draggable]="false" />
+
 } @else {
-<img [class]="class" [src]="trimmedImageUrl" [draggable]="false" />
+<hlm-spinner></hlm-spinner>
 }

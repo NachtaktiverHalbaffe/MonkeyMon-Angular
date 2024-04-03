@@ -1,4 +1,5 @@
-@if(pokemonsInfiniteQuery.isFetching()){
+@if(pokemonsInfiniteQuery.isFetching() &&
+pokemonsInfiniteQuery.data()?.pages?.length == 0){
 <hlm-spinner size="xl"></hlm-spinner>
 } @else if (pokemonsInfiniteQuery.isError()) {
 <div hlmAlert>
@@ -29,34 +30,14 @@
         inViewport
         [inViewportOptions]="{ threshold: [0.99] }"
         (inViewportAction)="fetchNextEntry($event)"
-        [mon]="{
-          name: pokemon.name,
-          hp: pokemon.hp,
-          attack: pokemon.attack,
-          defense: pokemon.defense,
-          specialAttack: pokemon.specialAttack,
-          specialDefense: pokemon.specialDefense,
-          speed: pokemon.speed,
-          image: pokemon.image,
-          description: pokemon.description
-        }"
+        [mon]="pokemon"
       ></app-mon-card>
     </hlm-carousel-item>
     } @else {
     <hlm-carousel-item>
       <app-mon-card
         class="sm:min-w-[500px] xl:min-w-[600px]"
-        [mon]="{
-          name: pokemon.name,
-          hp: pokemon.hp,
-          attack: pokemon.attack,
-          defense: pokemon.defense,
-          specialAttack: pokemon.specialAttack,
-          specialDefense: pokemon.specialDefense,
-          speed: pokemon.speed,
-          image: pokemon.image,
-          description: pokemon.description
-        }"
+        [mon]="pokemon"
       ></app-mon-card
     ></hlm-carousel-item>
     } } }
