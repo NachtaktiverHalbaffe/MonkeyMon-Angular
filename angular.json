@@ -24,6 +24,7 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
+            "allowedCommonJsDependencies": ["pokedex-promise-v2"],
             "styles": ["src/styles.css"],
             "scripts": []
           },

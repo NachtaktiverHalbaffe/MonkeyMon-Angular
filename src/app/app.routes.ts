@@ -1,9 +1,4 @@
 import { Routes } from '@angular/router';
-import { MonkeymonComponent } from './pages/monkeymon/monkeymon.component';
-import { StatisticsComponent } from './pages/statistics/statistics.component';
-import { MonkeyapiComponent } from './pages/monkeyapi/monkeyapi.component';
-import { PortfolioComponent } from './pages/portfolio/portfolio.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 
 export const routes: Routes = [
   {
@@ -14,27 +9,34 @@ export const routes: Routes = [
   },
   {
     path: 'monkeymon',
-    component: MonkeymonComponent,
+    loadComponent: () =>
+      import('./pages/monkeymon/monkeymon.component').then(
+        (m) => m.MonkeymonComponent
+      ),
     title: 'MonkeyMon Angular - Home',
   },
   {
     path: 'statistics',
-    component: StatisticsComponent,
+    loadComponent: () =>
+      import('./pages/statistics/statistics.component').then(
+        (m) => m.StatisticsComponent
+      ),
     title: 'MonkeyMon Angular - Statistics',
   },
   {
     path: 'monkeyapi',
-    component: MonkeyapiComponent,
+    loadComponent: () =>
+      import('./pages/monkeyapi/monkeyapi.component').then(
+        (m) => m.MonkeyapiComponent
+      ),
     title: 'MonkeyMon Angular - MonkeyAPI',
   },
   {
     path: 'portfolio',
-    component: PortfolioComponent,
+    loadComponent: () =>
+      import('./pages/portfolio/portfolio.component').then(
+        (m) => m.PortfolioComponent
+      ),
     title: 'MonkeyMon Angular - MonkeyMon Portfolio',
-  },
-  {
-    path: 'settings',
-    component: SettingsComponent,
-    title: 'MonkeyMon Angular - Settings',
   },
 ];
