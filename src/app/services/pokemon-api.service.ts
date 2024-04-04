@@ -28,7 +28,7 @@ export class PokemonApiService {
   injectPokemonQuery() {
     return injectQuery(() => ({
       queryKey: ['pokemons'],
-      queryFn: () => this.#getAllPokemon(),
+      queryFn: async () => await this.#getAllPokemon(),
       staleTime: Infinity,
     }));
   }

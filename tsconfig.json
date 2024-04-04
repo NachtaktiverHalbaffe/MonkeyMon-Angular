@@ -39,6 +39,27 @@
       ],
       "@spartan-ng/ui-sonner-helm": [
         "./src/app/components/ui-sonner-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-table-helm": [
+        "./src/app/components/ui-table-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-checkbox-helm": [
+        "./src/app/components/ui-checkbox-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-select-helm": [
+        "./src/app/components/ui-select-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-input-helm": [
+        "./src/app/components/ui-input-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-label-helm": [
+        "./src/app/components/ui-label-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-menu-helm": [
+        "./src/app/components/ui-menu-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-card-helm": [
+        "./src/app/components/ui-card-helm/src/index.ts"
       ]
     }
   },

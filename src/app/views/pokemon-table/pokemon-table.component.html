@@ -1,0 +1,252 @@
+@if(_query.isLoading()){
+<div class="flex items-center justify-center">
+  <hlm-spinner></hlm-spinner>
+</div>
+
+} @else{
+<section hlmCard>
+  <div hlmCardHeader>
+    <h1 hlmCardTitle class="text-xl sm:text-2xl md:text-3xl">Pokemon</h1>
+  </div>
+  <div hlmCardContent>
+    <div class="flex flex-col justify-between gap-4 sm:flex-row">
+      <input
+        hlmInput
+        class="w-full md:w-80"
+        placeholder="Filter Pokemon..."
+        [ngModel]="_pokemonFilter()"
+        (ngModelChange)="_rawFilterInput.set($event)"
+      />
+
+      <button hlmBtn variant="outline" align="end" [brnMenuTriggerFor]="menu">
+        Columns
+        <hlm-icon name="lucideChevronDown" class="ml-2" size="sm" />
+      </button>
+      <ng-template #menu>
+        <hlm-menu class="w-32">
+          @for (column of _brnColumnManager.allColumns; track column.name) {
+          <button
+            hlmMenuItemCheckbox
+            [disabled]="_brnColumnManager.isColumnDisabled(column.name)"
+            [checked]="_brnColumnManager.isColumnVisible(column.name)"
+            (triggered)="_brnColumnManager.toggleVisibility(column.name)"
+          >
+            <hlm-menu-item-check />
+            <span>{{ column.label }}</span>
+          </button>
+          }
+        </hlm-menu>
+      </ng-template>
+    </div>
+
+    <brn-table
+      hlm
+      stickyHeader
+      class="border-border mt-4 block h-fit overflow-auto rounded-md border"
+      [dataSource]="_filteredSortedPaginatedPokemons()"
+      [displayedColumns]="_allDisplayedColumns()"
+      [trackBy]="_trackBy"
+    >
+      <brn-column-def name="id" class="w-24">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_idSort)"
+          >
+            #
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td class="ml-3" *brnCellDef="let element">
+          {{ element.id }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="name" class="w-32 lg:flex-2">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_nameSort)"
+          >
+            Name
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td class="font-bold" truncate *brnCellDef="let element">
+          {{ element.name }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="hp" class="w-28">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_hpSort)"
+          >
+            HP
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td truncate *brnCellDef="let element">
+          {{ element.hp }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="attack" class="w-32">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_attackSort)"
+          >
+            Attack
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td truncate *brnCellDef="let element">
+          {{ element.attack }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="defense" class="w-32">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_defenseSort)"
+          >
+            Defense
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td truncate *brnCellDef="let element">
+          {{ element.defense }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="specialAttack" class="w-40">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_specialAttackSort)"
+          >
+            Sp. Attack
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td truncate *brnCellDef="let element">
+          {{ element.specialAttack }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="specialDefense" class="w-40">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_specialDefenseSort)"
+          >
+            Sp. Defense
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td truncate *brnCellDef="let element">
+          {{ element.specialDefense }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="speed" class="w-32">
+        <hlm-th truncate *brnHeaderDef
+          ><button
+            hlmBtn
+            class="font-bold"
+            size="sm"
+            variant="ghost"
+            (click)="_setSorting(_speedSort)"
+          >
+            Speed
+            <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
+        ></hlm-th>
+        <hlm-td truncate *brnCellDef="let element">
+          {{ element.speed }}
+        </hlm-td>
+      </brn-column-def>
+
+      <brn-column-def name="types" class="w-32 lg:flex-1">
+        <hlm-th class="font-bold" *brnHeaderDef>Types</hlm-th>
+        <hlm-td class="font-medium tabular-nums" *brnCellDef="let element">
+          $ {{ element.types }}
+        </hlm-td>
+      </brn-column-def>
+
+      <div
+        class="text-muted-foreground flex items-center justify-center p-20"
+        brnNoDataRow
+      >
+        No data
+      </div>
+    </brn-table>
+  </div>
+
+  <div
+    hlmCardFooter
+    class="mt-4 flex flex-row justify-between"
+    *brnPaginator="
+      let ctx;
+      totalElements: _totalElements();
+      pageSize: _pageSize();
+      onStateChange: _onStateChange
+    "
+  >
+    <div class="mt-2 flex sm:mt-0">
+      <brn-select
+        class="inline-block"
+        placeholder="{{ _availablePageSizes[0] }}"
+        [(ngModel)]="_pageSize"
+      >
+        <hlm-select-trigger class="w-15 mr-1 inline-flex h-9">
+          <hlm-select-value />
+        </hlm-select-trigger>
+        <hlm-select-content>
+          @for (size of _availablePageSizes; track size) {
+          <hlm-option [value]="size">
+            {{ size === 10000 ? "All" : size }}
+          </hlm-option>
+          }
+        </hlm-select-content>
+      </brn-select>
+    </div>
+    <div class="flex space-x-1">
+      <button
+        size="sm"
+        variant="outline"
+        hlmBtn
+        [disabled]="!ctx.decrementable()"
+        (click)="ctx.decrement()"
+      >
+        Previous
+      </button>
+      <button
+        size="sm"
+        variant="outline"
+        hlmBtn
+        [disabled]="!ctx.incrementable()"
+        (click)="ctx.increment()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</section>
+}
