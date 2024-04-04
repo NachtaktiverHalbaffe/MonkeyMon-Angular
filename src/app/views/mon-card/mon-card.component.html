@@ -12,12 +12,12 @@
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png'
       "
     />
+    <app-text class="text-lg text-justify sm:text-xl xl:min-h-32 py-4">{{
+      mon.description
+    }}</app-text>
   </div>
 
-  <app-text class="text-lg text-justify sm:text-xl xl:min-h-32 py-4">{{
-    mon.description
-  }}</app-text>
-  <div class="flex flex-col w-full">
+  <div class="flex flex-col w-full mb-8">
     <app-stat-bar [value]="mon.hp" maxValue="255" label="HP"></app-stat-bar>
     <app-stat-bar
       [value]="mon.attack"
