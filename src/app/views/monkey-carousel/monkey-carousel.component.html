@@ -1,0 +1,26 @@
+@if(!(monkeys$|async) && !isError()){
+<div class="flex w-full items-center justify-center p-4">
+  <hlm-spinner size="xl"></hlm-spinner>
+</div>
+} @else if (isError()) {
+<div hlmAlert variant="destructive">
+  <hlm-icon hlmAlertIcon name="lucideAlertTriangle" />
+  <h4 hlmAlertTitle>Couldn't load Monkeys</h4>
+  <p hlmAlertDesc>
+    {{ errMsg() }}
+  </p>
+</div>
+} @else {
+<hlm-carousel>
+  <hlm-carousel-content>
+    @for(monkey of monkeys$ |async; track monkey.id){
+    <hlm-carousel-item>
+      <app-mon-card
+        class="sm:min-w-[500px] xl:min-w-[600px]"
+        [mon]="monkey"
+      ></app-mon-card
+    ></hlm-carousel-item>
+    }
+  </hlm-carousel-content>
+</hlm-carousel>
+}

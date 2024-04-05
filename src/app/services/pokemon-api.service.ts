@@ -26,7 +26,7 @@ export class PokemonApiService {
   injectPokemonQuery() {
     return injectQuery(() => ({
       queryKey: ['pokemons'],
-      queryFn: async () => await this.#getAllPokemon(),
+      queryFn: async () => await this._getAllPokemon(),
       staleTime: Infinity,
     }));
   }
@@ -36,7 +36,7 @@ export class PokemonApiService {
       queryKey: ['pokemons-pageable'],
       queryFn: async ({ pageParam }) => {
         this.currentPage = pageParam;
-        return await this.#getPokemonPage();
+        return await this._getPokemonPage();
       },
       initialPageParam: 0,
       getNextPageParam: () => this.nextPage,
@@ -44,12 +44,12 @@ export class PokemonApiService {
     }));
   }
 
-  async #getAllPokemon(): Promise<Pokemon[]> {
+  async _getAllPokemon(): Promise<Pokemon[]> {
     try {
       const pokemonListResponse = await this.pokedexApi.getPokemonsList();
       const pokemons = await Promise.all(
         pokemonListResponse.results.map(async (element): Promise<Pokemon> => {
-          const singlePokemon = await this.#getPokemon(element.name);
+          const singlePokemon = await this._getPokemon(element.name);
 
           return singlePokemon;
         })
@@ -62,7 +62,7 @@ export class PokemonApiService {
     }
   }
 
-  async #getPokemon(nameOrId: string | number): Promise<Pokemon> {
+  async _getPokemon(nameOrId: string | number): Promise<Pokemon> {
     const response = await this.pokedexApi.getPokemonByName(nameOrId);
 
     const pokemon: Pokemon = {
@@ -107,7 +107,7 @@ export class PokemonApiService {
     return PokemonSchema.parse(pokemon);
   }
 
-  async #getPokemonPage(): Promise<Pokemon[]> {
+  async _getPokemonPage(): Promise<Pokemon[]> {
     if (this.currentPage == null) {
       console.warn('No more Pokemon data avaible, aborting fetching page');
       return [];
@@ -123,7 +123,7 @@ export class PokemonApiService {
 
       const pokemons = await Promise.all(
         pokemonListResponse.results.map(async (element): Promise<Pokemon> => {
-          const singlePokemon = await this.#getPokemon(element.name);
+          const singlePokemon = await this._getPokemon(element.name);
 
           return singlePokemon;
         })
@@ -137,7 +137,7 @@ export class PokemonApiService {
     }
   }
 
-  async #getNrOfAvailbePokemon(): Promise<number> {
+  async _getNrOfAvailbePokemon(): Promise<number> {
     try {
       return (await this.pokedexApi.getPokemonsList()).count;
     } catch (error) {

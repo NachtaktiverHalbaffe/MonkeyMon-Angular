@@ -24,10 +24,13 @@ import {
   HlmAlertIconDirective,
   HlmAlertTitleDirective,
 } from '@spartan-ng/ui-alert-helm';
+import { lucideAlertTriangle } from '@ng-icons/lucide';
+import { provideIcons } from '@ng-icons/core';
 
 @Component({
   selector: 'app-pokemon-carousel',
   standalone: true,
+  providers: [provideIcons({ lucideAlertTriangle })],
   imports: [
     MonCardComponent,
     HlmCarouselComponent,

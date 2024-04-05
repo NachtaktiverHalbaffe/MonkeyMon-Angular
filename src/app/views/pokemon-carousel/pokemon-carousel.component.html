@@ -2,8 +2,8 @@
 pokemonsInfiniteQuery.data()?.pages?.length == 0){
 <hlm-spinner size="xl"></hlm-spinner>
 } @else if (pokemonsInfiniteQuery.isError()) {
-<div hlmAlert>
-  <hlm-icon hlmAlertIcon name="lucideBox" />
+<div hlmAlert variant="destructive">
+  <hlm-icon hlmAlertIcon name="lucideAlertTriangle" />
   <h4 hlmAlertTitle>Couldn't load Pokemons</h4>
   <p hlmAlertDesc>
     Couldn't load Pokemons from PokeAPI:
