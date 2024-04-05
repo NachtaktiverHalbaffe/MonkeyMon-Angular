@@ -1,18 +1,8 @@
-import {
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  computed,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, computed, effect, input, signal } from '@angular/core';
 import { HlmSpinnerComponent } from '../ui-spinner-helm/src/lib/hlm-spinner.component';
 import { ClassValue } from 'clsx';
 import { hlm } from '@spartan-ng/ui-core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-trimmed-image',
@@ -23,50 +13,38 @@ import { toObservable } from '@angular/core/rxjs-interop';
     '[class]': '_computedClass()',
   },
 })
-export class TrimmedImageComponent implements OnInit, OnDestroy {
+export class TrimmedImageComponent {
   public readonly src = input<string>('');
-  src$ = toObservable(this.src);
-  @Input() trimHeight: boolean = false;
-  @Input() trimWidth: boolean = false;
+  public readonly trimHeight = input<boolean>(false);
+  public readonly trimWidth = input<boolean>(false);
 
-  httpSubscription!: Subscription;
-  imagePathSubscription!: Subscription;
   trimmedImageUrl = signal<string>('');
 
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   protected _computedClass = computed(() => hlm(this.userClass()));
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    effect(() => {
+      this.http.get(this.src(), { responseType: 'blob' }).subscribe({
+        next: (blob) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64data = reader.result as string;
+            this.trimImage(base64data);
+          };
 
-  ngOnInit(): void {
-    this.imagePathSubscription = this.src$.subscribe((src) => {
-      this.httpSubscription = this.http
-        .get(src, { responseType: 'blob' })
-        .subscribe({
-          next: (blob) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              const base64data = reader.result as string;
-              this.trimImage(base64data);
-            };
-
-            reader.readAsDataURL(blob);
-          },
-          error: (error) => {
-            console.error('Error lading image: ', error.message);
-            import('ngx-sonner')
-              .then((module) => module.toast)
-              .then((toast) =>
-                toast.error(`Couldnt load image: ${error.message}`)
-              );
-          },
-        });
+          reader.readAsDataURL(blob);
+        },
+        error: (error) => {
+          console.error('Error lading image: ', error.message);
+          import('ngx-sonner')
+            .then((module) => module.toast)
+            .then((toast) =>
+              toast.error(`Couldnt load image: ${error.message}`)
+            );
+        },
+      });
     });
-  }
-
-  ngOnDestroy(): void {
-    this.httpSubscription.unsubscribe();
-    this.imagePathSubscription.unsubscribe();
   }
 
   trimImage(base64data: string) {
@@ -112,10 +90,10 @@ export class TrimmedImageComponent implements OnInit, OnDestroy {
           const trimmedCanvas = document.createElement('canvas');
           const trimmedContext = trimmedCanvas.getContext('2d');
           if (trimmedContext) {
-            const trimmedWidth = this.trimWidth
+            const trimmedWidth = this.trimWidth()
               ? maxX - minX + 1
               : canvas.width;
-            const trimmedHeight = this.trimHeight
+            const trimmedHeight = this.trimHeight()
               ? maxY - minY + 1
               : canvas.height;
             trimmedCanvas.width = trimmedWidth;
