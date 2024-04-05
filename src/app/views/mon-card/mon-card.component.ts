@@ -8,7 +8,6 @@ import { twMerge } from 'tailwind-merge';
 import { Mon } from '../../types/mon';
 import { OutlinedButtonComponent } from '../../components/outlined-button/outlined-button.component';
 import { BattleEngineService } from '../../services/battleengine-service.service';
-import { toast } from 'ngx-sonner';
 import { isPokemon } from '../../types/pokemon';
 
 @Component({
@@ -34,29 +33,41 @@ export class MonCardComponent {
 
   sendFighter() {
     this.arenaService.setFighter(this.mon);
-    toast(
-      `${isPokemon(this.mon) ? 'Pokemon' : 'Monkey'} has been sent to Arena`,
-      {
-        description: `${this.mon.name} has been selected as the fighter`,
-        action: {
-          label: 'Ok',
-          onClick: () => {},
-        },
-      }
-    );
+    import('ngx-sonner')
+      .then((module) => module.toast)
+      .then((toast) =>
+        toast(
+          `${
+            isPokemon(this.mon) ? 'Pokemon' : 'Monkey'
+          } has been sent to Arena`,
+          {
+            description: `${this.mon.name} has been selected as the fighter`,
+            action: {
+              label: 'Ok',
+              onClick: () => {},
+            },
+          }
+        )
+      );
   }
 
   sendOpponent() {
     this.arenaService.setOpponent(this.mon);
-    toast(
-      `${isPokemon(this.mon) ? 'Pokemon' : 'Monkey'} has been sent to Arena`,
-      {
-        description: `${this.mon.name} has been selected as the opponent`,
-        action: {
-          label: 'Ok',
-          onClick: () => {},
-        },
-      }
-    );
+    import('ngx-sonner')
+      .then((m) => m.toast)
+      .then((toast) =>
+        toast(
+          `${
+            isPokemon(this.mon) ? 'Pokemon' : 'Monkey'
+          } has been sent to Arena`,
+          {
+            description: `${this.mon.name} has been selected as the opponent`,
+            action: {
+              label: 'Ok',
+              onClick: () => {},
+            },
+          }
+        )
+      );
   }
 }

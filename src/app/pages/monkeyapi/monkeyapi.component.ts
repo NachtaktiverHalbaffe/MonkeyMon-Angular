@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './monkeyapi.component.html',
-  styleUrl: './monkeyapi.component.css'
+  styleUrl: './monkeyapi.component.css',
 })
-export class MonkeyapiComponent {
-
-}
+export class MonkeyapiComponent {}

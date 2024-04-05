@@ -8,8 +8,6 @@ import {
   signal,
 } from '@angular/core';
 import { HlmSpinnerComponent } from '../ui-spinner-helm/src/lib/hlm-spinner.component';
-import { toast } from 'ngx-sonner';
-import { HlmToasterComponent } from '../ui-sonner-helm/src/lib/hlm-toaster.component';
 import { ClassValue } from 'clsx';
 import { hlm } from '@spartan-ng/ui-core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -56,7 +54,11 @@ export class TrimmedImageComponent implements OnInit, OnDestroy {
           },
           error: (error) => {
             console.error('Error lading image: ', error.message);
-            toast.error(`Couldnt load image: ${error.message}`);
+            import('ngx-sonner')
+              .then((module) => module.toast)
+              .then((toast) =>
+                toast.error(`Couldnt load image: ${error.message}`)
+              );
           },
         });
     });
@@ -137,9 +139,13 @@ export class TrimmedImageComponent implements OnInit, OnDestroy {
       };
     } catch (error) {
       console.error('Error lading image:', error);
-      toast.error('Couldnt load image', {
-        description: '',
-      });
+      import('ngx-sonner')
+        .then((module) => module.toast)
+        .then((toast) =>
+          toast.error('Couldnt load image', {
+            description: '',
+          })
+        );
     }
   }
 }

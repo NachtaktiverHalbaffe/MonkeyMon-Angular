@@ -31,7 +31,9 @@
         "bradlc.vscode-tailwindcss",
         "Angular.ng-template",
         "johnpapa.Angular2",
-        "cyrilletuzi.angular-schematics"
+        "cyrilletuzi.angular-schematics",
+        "wix.vscode-import-cost",
+        "ms-vscode.live-server"
       ]
     }
   },
