@@ -1,8 +1,9 @@
-import { Injectable, Signal, WritableSignal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Combatant } from '../types/Combatant';
 import { Monkey } from '../types/monkey';
 import { Pokemon, isPokemon } from '../types/pokemon';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import { from } from 'rxjs/internal/observable/from';
 
 @Injectable({
   providedIn: 'root',

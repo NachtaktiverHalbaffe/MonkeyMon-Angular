@@ -1,11 +1,9 @@
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Pokemon, PokemonSchema } from '../types/pokemon';
 import Pokedex from 'pokedex-promise-v2';
-import { from } from 'rxjs';
 import {
   injectInfiniteQuery,
   injectQuery,
-  injectQueryClient,
 } from '@tanstack/angular-query-experimental';
 
 export const pageSize = 10;

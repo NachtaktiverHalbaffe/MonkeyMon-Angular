@@ -27,7 +27,7 @@ import {
   HlmCheckboxComponent,
 } from '@spartan-ng/ui-checkbox-helm';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { debounceTime } from 'rxjs';
+
 import { PokemonApiService } from '../../services/pokemon-api.service';
 import { Pokemon } from '../../types/pokemon';
 import { HlmSpinnerComponent } from '../../components/ui-spinner-helm/src/lib/hlm-spinner.component';
@@ -43,6 +43,7 @@ import {
   HlmCardHeaderDirective,
   HlmCardTitleDirective,
 } from '@spartan-ng/ui-card-helm';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'app-pokemon-table',

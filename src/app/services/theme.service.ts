@@ -6,7 +6,9 @@ import {
   RendererFactory2,
   inject,
 } from '@angular/core';
-import { ReplaySubject, Subject, takeUntil } from 'rxjs';
+import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

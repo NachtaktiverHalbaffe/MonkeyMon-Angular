@@ -1,22 +1,16 @@
-import {
-  Component,
-  OnDestroy,
-  Signal,
-  computed,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
 import { BattleSpriteComponent } from '../../components/battle-sprite/battle-sprite.component';
 import { BattleStatsComponent } from '../battle-stats/battle-stats.component';
 import { Combatant } from '../../types/Combatant';
 import { BattleEngineService } from '../../services/battleengine-service.service';
-import { Observable, map, of } from 'rxjs';
+
 import { ClassValue } from 'clsx';
 import { hlm } from '@spartan-ng/ui-core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs/internal/observable/of';
+import { map } from 'rxjs/internal/operators/map';
 
 @Component({
   selector: 'app-arena',
