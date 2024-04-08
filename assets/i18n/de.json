@@ -1,0 +1,56 @@
+{
+  "arena": {
+    "choose_fighter": "Wähle einen Kämpfer aus",
+    "choose_opponent": "Wähle einen Gegner aus"
+  },
+  "footer": {
+    "about": "Über",
+    "contact": "Kontakt",
+    "legal_notice": "Pokémon and Pokémon Charakter-Namen sind geschüzte Marken von Nintendo.",
+    "license": "Lizenz"
+  },
+  "moncard": {
+    "send_fighter": "Als Kämpfer in die Arena schicken",
+    "send_opponent": "Als Gegner in die Arena schicken"
+  },
+  "monkey_carousel": {
+    "error_msg": "Konnte Monkeys nicht laden"
+  },
+  "monkeyapi": {
+    "error": "Konnte Monkeys nicht vom Internet laden"
+  },
+  "nav_bar": {
+    "open_menu": "Hauptmenü öffnen",
+    "statistics": "Statistiken"
+  },
+  "pokemon_carousel": {
+    "error_msg": "Konnte Pokemon nicht laden",
+    "error_title": "Konnte Pokemon von PkeAPI nicht laden"
+  },
+  "pokemon": {
+    "attack": "Angriff",
+    "defense": "Verteidung",
+    "hp": "KP",
+    "specialAttack": "Sp. Angriff",
+    "specialDefense": "Sp. Verteidiung",
+    "speed": "Initiative"
+  },
+  "portfolio": {
+    "flutter": "Erstes MonkeyMon-Projekt, welches mithilfe von Flutter erstellt wurde",
+    "react": "Zweites MonkeyMon-Projekt, welches mithilfe von React erstellt wurde"
+  },
+  "statistics": {
+    "columns": "Spalten",
+    "name": "Name",
+    "next": "Nächste",
+    "no_data": "Keine Daten",
+    "prev": "Vorherige",
+    "types": "Typen"
+  },
+  "theme_toggle": {
+    "dark": "Dunkel",
+    "light": "Hell",
+    "menu": "Thema",
+    "system": "Systemeinstellung folgen"
+  }
+}
