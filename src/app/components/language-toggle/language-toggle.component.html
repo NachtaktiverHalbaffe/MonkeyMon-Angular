@@ -3,6 +3,8 @@
   data-dropdown-toggle="language-dropdown-menu"
   class="text-[0rem] md:text-base inline-flex items-center font-medium justify-center px-4 py-2 text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
 >
+  @if(currentLang() =="en"){
+
   <svg
     class="w-5 h-5 rounded-full md:me-3"
     aria-hidden="true"
@@ -41,7 +43,20 @@
       <use xlink:href="#e" x="2470" />
     </g>
   </svg>
-  English
+  English } @else if(currentLang()=="de"){
+
+  <svg
+    class="h-3.5 w-3.5 rounded-full me-2"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    id="flag-icon-css-de"
+    viewBox="0 0 512 512"
+  >
+    <path fill="#ffce00" d="M0 341.3h512V512H0z" />
+    <path d="M0 0h512v170.7H0z" />
+    <path fill="#d00" d="M0 170.7h512v170.6H0z" />
+  </svg>
+  Deutsch }
 </button>
 
 <div
