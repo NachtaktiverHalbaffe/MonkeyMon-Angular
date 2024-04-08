@@ -7,6 +7,7 @@ import { initDropdowns } from 'flowbite/lib/esm/components/dropdown';
 import { AngularQueryDevtoolsComponent } from './components/angular-query-devtools/angular-query-devtools.component';
 import { Component, OnInit, isDevMode } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { initCollapses } from 'flowbite/lib/esm/components/collapse';
 
 @Component({
   selector: 'app-root',
@@ -37,5 +38,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     initDropdowns();
+    initCollapses();
   }
 }
