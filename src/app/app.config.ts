@@ -19,8 +19,10 @@ import {
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+const i18n_route = !isDevMode() ? './assets/i18n/' : '../assets/i18n/';
+
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, i18n_route);
 }
 
 export const appConfig: ApplicationConfig = {
