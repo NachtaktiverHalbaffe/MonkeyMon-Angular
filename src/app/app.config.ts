@@ -11,11 +11,7 @@ import {
   provideAngularQuery,
 } from '@tanstack/angular-query-experimental';
 import { provideServiceWorker } from '@angular/service-worker';
-import {
-  HttpClient,
-  HttpClientModule,
-  provideHttpClient,
-} from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -34,7 +30,6 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    importProvidersFrom(HttpClientModule), // or provideHttpClient() in Angular v15
     importProvidersFrom(
       TranslateModule.forRoot({
         defaultLanguage: 'en',
