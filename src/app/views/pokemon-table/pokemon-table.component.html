@@ -19,7 +19,7 @@
       />
 
       <button hlmBtn variant="outline" align="end" [brnMenuTriggerFor]="menu">
-        Columns
+        {{ "statistics.columns" | translate }}
         <hlm-icon name="lucideChevronDown" class="ml-2" size="sm" />
       </button>
       <ng-template #menu>
@@ -73,7 +73,7 @@
             variant="ghost"
             (click)="_setSorting(_nameSort)"
           >
-            Name
+            {{ "statistics.name" | translate }}
             <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
         ></hlm-th>
         <hlm-td class="font-bold" truncate *brnCellDef="let element">
@@ -90,7 +90,7 @@
             variant="ghost"
             (click)="_setSorting(_hpSort)"
           >
-            HP
+            {{ "pokemon.hp" | translate }}
             <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
         ></hlm-th>
         <hlm-td truncate *brnCellDef="let element">
@@ -107,7 +107,7 @@
             variant="ghost"
             (click)="_setSorting(_attackSort)"
           >
-            Attack
+            {{ "pokemon.attack" | translate }}
             <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
         ></hlm-th>
         <hlm-td truncate *brnCellDef="let element">
@@ -124,7 +124,7 @@
             variant="ghost"
             (click)="_setSorting(_defenseSort)"
           >
-            Defense
+            {{ "pokemon.defense" | translate }}
             <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
         ></hlm-th>
         <hlm-td truncate *brnCellDef="let element">
@@ -141,7 +141,7 @@
             variant="ghost"
             (click)="_setSorting(_specialAttackSort)"
           >
-            Sp. Attack
+            {{ "pokemon.specialAttack" | translate }}
             <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
         ></hlm-th>
         <hlm-td truncate *brnCellDef="let element">
@@ -158,7 +158,7 @@
             variant="ghost"
             (click)="_setSorting(_specialDefenseSort)"
           >
-            Sp. Defense
+            {{ "pokemon.specialDefense" | translate }}
             <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
         ></hlm-th>
         <hlm-td truncate *brnCellDef="let element">
@@ -175,7 +175,7 @@
             variant="ghost"
             (click)="_setSorting(_speedSort)"
           >
-            Speed
+            {{ "pokemon.speed" | translate }}
             <hlm-icon class="ml-3" size="sm" name="lucideArrowUpDown" /></button
         ></hlm-th>
         <hlm-td truncate *brnCellDef="let element">
@@ -194,7 +194,7 @@
         class="text-muted-foreground flex items-center justify-center p-20"
         brnNoDataRow
       >
-        No data
+        {{ "statistics.no_data" | translate }}
       </div>
     </brn-table>
   </div>
@@ -235,7 +235,7 @@
         [disabled]="!ctx.decrementable()"
         (click)="ctx.decrement()"
       >
-        Previous
+        {{ "statistics.prev" | translate }}
       </button>
       <button
         size="sm"
@@ -244,7 +244,7 @@
         [disabled]="!ctx.incrementable()"
         (click)="ctx.increment()"
       >
-        Next
+        {{ "statistics.next" | translate }}
       </button>
     </div>
   </div>

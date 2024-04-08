@@ -4,9 +4,9 @@ pokemonsInfiniteQuery.data()?.pages?.length == 0){
 } @else if (pokemonsInfiniteQuery.isError()) {
 <div hlmAlert variant="destructive">
   <hlm-icon hlmAlertIcon name="lucideAlertTriangle" />
-  <h4 hlmAlertTitle>Couldn't load Pokemons</h4>
+  <h4 hlmAlertTitle>{{ "pokemon_carousel.error_title" | translate }}</h4>
   <p hlmAlertDesc>
-    Couldn't load Pokemons from PokeAPI:
+    {{ "pokemon_carousel.error_msg" | translate }}
     {{ pokemonsInfiniteQuery.error()?.message }}
   </p>
 </div>

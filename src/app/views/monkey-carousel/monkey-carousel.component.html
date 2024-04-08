@@ -5,7 +5,7 @@
 } @else if (isError()) {
 <div hlmAlert variant="destructive">
   <hlm-icon hlmAlertIcon name="lucideAlertTriangle" />
-  <h4 hlmAlertTitle>Couldn't load Monkeys</h4>
+  <h4 hlmAlertTitle>{{ "monkey_carousel.error_msg" | translate }}</h4>
   <p hlmAlertDesc>
     {{ errMsg() }}
   </p>

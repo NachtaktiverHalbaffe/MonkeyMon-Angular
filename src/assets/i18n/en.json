@@ -1,0 +1,56 @@
+{
+  "arena": {
+    "choose_fighter": "Choose fighter",
+    "choose_opponent": "Choose opponent"
+  },
+  "footer": {
+    "about": "About",
+    "contact": "Contact",
+    "legal_notice": "Pokémon and Pokémon character names are trademarks of Nintendo.",
+    "license": "Lizenz"
+  },
+  "moncard": {
+    "send_fighter": "Send to arena as fighter",
+    "send_opponent": "Send to arena as opponent"
+  },
+  "monkey_carousel": {
+    "error_msg": "Couldn't load monkeys"
+  },
+  "monkeyapi": {
+    "error": "Couldnt load Monkeys from the internet"
+  },
+  "nav_bar": {
+    "open_menu": "Open main menu",
+    "statistics": "Statistics"
+  },
+  "pokemon_carousel": {
+    "error_msg": "Couldn't load pokemons",
+    "error_title": "Couldn't load pokemons from PokeAPI:"
+  },
+  "pokemon": {
+    "attack": "Attack",
+    "defense": "Defense",
+    "hp": "HP",
+    "specialAttack": "Sp. Attack",
+    "specialDefense": "Sp. Defense",
+    "speed": "Speed"
+  },
+  "portfolio": {
+    "flutter": "The first MonkeyMon project build with Flutter",
+    "react": "The second MonkeyMon project build with React"
+  },
+  "statistics": {
+    "columns": "Spalten",
+    "name": "Name",
+    "next": "Next",
+    "no_data": "No data",
+    "prev": "Previous",
+    "types": "Types"
+  },
+  "theme_toggle": {
+    "dark": "Dark-Theme",
+    "light": "Light-Theme",
+    "menu": "Theme",
+    "system": "Follow System"
+  }
+}

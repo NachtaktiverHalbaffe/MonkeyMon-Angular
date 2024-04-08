@@ -26,6 +26,7 @@ import {
 } from '@spartan-ng/ui-alert-helm';
 import { lucideAlertTriangle } from '@ng-icons/lucide';
 import { provideIcons } from '@ng-icons/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pokemon-carousel',
@@ -42,6 +43,7 @@ import { provideIcons } from '@ng-icons/core';
     HlmAlertIconDirective,
     HlmAlertTitleDirective,
     InViewportModule,
+    TranslateModule,
   ],
   templateUrl: './pokemon-carousel.component.html',
 })

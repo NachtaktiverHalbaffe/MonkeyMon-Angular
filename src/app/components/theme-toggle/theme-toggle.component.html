@@ -7,7 +7,7 @@
     class="text-[0rem] md:text-base inline-flex items-center font-medium justify-center px-4 py-2 text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
   >
     <hlm-icon class="md:me-3" [name]="currentTheme" strokeWidth="2" />
-    Theme
+    {{ "theme_toggle.menu" | translate }}
   </button>
 
   <div
@@ -22,7 +22,7 @@
         >
           <div class="inline-flex items-center me-3">
             <hlm-icon class="me-3" name="lucideMoon" strokeWidth="2" />
-            Dark-Theme
+            {{ "theme_toggle.dark" | translate }}
           </div>
         </a>
       </li>
@@ -33,7 +33,7 @@
         >
           <div class="inline-flex items-center">
             <hlm-icon class="me-3" name="lucideSun" strokeWidth="2" />
-            Light-Theme
+            {{ "theme_toggle.light" | translate }}
           </div>
         </a>
       </li>
@@ -44,7 +44,7 @@
         >
           <div class="inline-flex items-center">
             <hlm-icon class="me-3" name="lucideSunMoon" strokeWidth="2" />
-            Follow System
+            {{ "theme_toggle.system" | translate }}
           </div>
         </a>
       </li>

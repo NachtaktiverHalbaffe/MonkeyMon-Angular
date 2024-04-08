@@ -7,6 +7,7 @@ import { hlm } from '@spartan-ng/ui-core';
 import { ClassValue } from 'clsx';
 import { TextComponent } from '../../components/text/text.component';
 import { ProgressBarComponent } from '../../components/progress-bar/progress-bar.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-battle-stats',
@@ -16,6 +17,7 @@ import { ProgressBarComponent } from '../../components/progress-bar/progress-bar
     StatBarComponent,
     TextComponent,
     ProgressBarComponent,
+    TranslateModule,
   ],
   templateUrl: './battle-stats.component.html',
   host: {
@@ -25,6 +27,13 @@ import { ProgressBarComponent } from '../../components/progress-bar/progress-bar
 export class BattleStatsComponent {
   readonly fighter = input<Combatant | null>(null);
   readonly opponent = input<Combatant | null>(null);
+  hpLabel: string = 'HP';
+
+  constructor(translate: TranslateService) {
+    translate.get('pokemon.hp').subscribe((translation) => {
+      this.hpLabel = translation;
+    });
+  }
 
   @Input()
   set class(cls: ClassValue) {

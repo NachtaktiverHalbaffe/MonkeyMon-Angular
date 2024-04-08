@@ -1,6 +1,7 @@
 import { DecimalPipe, TitleCasePipe } from '@angular/common';
 import {
   Component,
+  OnInit,
   TrackByFunction,
   WritableSignal,
   computed,
@@ -11,6 +12,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { HlmButtonModule } from '@spartan-ng/ui-button-helm';
 import {
+  BrnColumnManager,
   BrnTableModule,
   PaginatorState,
   useBrnColumnManager,
@@ -44,6 +46,7 @@ import {
   HlmCardTitleDirective,
 } from '@spartan-ng/ui-card-helm';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pokemon-table',
@@ -77,6 +80,7 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
     HlmCardContentDirective,
     HlmCardHeaderDirective,
     HlmCardFooterDirective,
+    TranslateModule,
   ],
   templateUrl: './pokemon-table.component.html',
   providers: [
@@ -87,28 +91,26 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
     }),
   ],
 })
-export class PokemonTableComponent {
+export class PokemonTableComponent implements OnInit {
   protected readonly _rawFilterInput = signal('');
   protected readonly _pokemonFilter = signal('');
   private readonly _debouncedFilter = toSignal(
     toObservable(this._rawFilterInput).pipe(debounceTime(300))
   );
+  labelName: string = '';
+  labelHp: string = '';
+  labelAttack: string = '';
+  labelDefense: string = '';
+  labelSpecialAttack: string = '';
+  labelSpecialDefense: string = '';
+  labelSpeed: string = '';
+  labelTypes: string = '';
 
   private readonly _displayedIndices = signal({ start: 0, end: 0 });
   protected readonly _availablePageSizes = [5, 10, 20, 10000];
   protected readonly _pageSize = signal(this._availablePageSizes[0]);
 
-  protected readonly _brnColumnManager = useBrnColumnManager({
-    id: { visible: true, label: '#' },
-    name: { visible: true, label: 'Name' },
-    hp: { visible: true, label: 'HP' },
-    attack: { visible: true, label: 'Attack' },
-    defense: { visible: true, label: 'Defense' },
-    specialAttack: { visible: true, label: 'Sp. Attack' },
-    specialDefense: { visible: true, label: 'Sp. Defense' },
-    speed: { visible: true, label: 'Speed' },
-    types: { visible: true, label: 'Type' },
-  });
+  protected _brnColumnManager: any;
   protected readonly _allDisplayedColumns = computed(() => [
     ...this._brnColumnManager.displayedColumns(),
   ]);
@@ -219,11 +221,47 @@ export class PokemonTableComponent {
     p: Pokemon
   ) => p.id;
 
-  constructor() {
+  constructor(translate: TranslateService) {
     // needed to sync the debounced filter to the name filter, but being able to override the
     // filter when loading new users without debounce
     effect(() => this._pokemonFilter.set(this._debouncedFilter() ?? ''), {
       allowSignalWrites: true,
+    });
+
+    translate
+      .get([
+        'pokemon.hp',
+        'pokemon.attack',
+        'pokemon.attack',
+        'pokemon.defense',
+        'pokemon.specialAttack',
+        'pokemon.specialDefense',
+        'pokemon.speed',
+        'statistics.name',
+        'statistics.types',
+      ])
+      .subscribe((translations) => {
+        this.labelHp = translations['pokemon.hp'];
+        this.labelAttack = translations['pokemon.attack'];
+        this.labelDefense = translations['pokemon.defense'];
+        this.labelSpecialAttack = translations['pokemon.specialAttack'];
+        this.labelSpecialDefense = translations['pokemon.specialDefense'];
+        this.labelSpeed = translations['pokemon.speed'];
+        this.labelName = translations['statistics.name'];
+        this.labelTypes = translations['statistics.types'];
+      });
+  }
+  ngOnInit(): void {
+    this._brnColumnManager = useBrnColumnManager({
+      id: { visible: true, label: '#' },
+      name: { visible: true, label: this.labelName },
+      hp: { visible: true, label: this.labelHp },
+      attack: { visible: true, label: this.labelAttack },
+      defense: { visible: true, label: this.labelDefense },
+      specialAttack: { visible: true, label: this.labelSpecialAttack },
+      specialDefense: { visible: true, label: this.labelSpecialDefense },
+      speed: { visible: true, label: this.labelSpeed },
+      types: { visible: true, label: this.labelTypes },
     });
   }
 

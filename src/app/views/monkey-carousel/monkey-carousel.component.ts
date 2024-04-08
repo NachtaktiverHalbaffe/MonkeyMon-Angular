@@ -15,6 +15,7 @@ import { AsyncPipe } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { lucideAlertTriangle } from '@ng-icons/lucide';
 import { provideIcons } from '@ng-icons/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-monkey-carousel',
@@ -31,6 +32,7 @@ import { provideIcons } from '@ng-icons/core';
     HlmAlertIconDirective,
     HlmAlertTitleDirective,
     AsyncPipe,
+    TranslateModule,
   ],
   templateUrl: './monkey-carousel.component.html',
 })

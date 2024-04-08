@@ -9,6 +9,7 @@ import { Mon } from '../../types/mon';
 import { OutlinedButtonComponent } from '../../components/outlined-button/outlined-button.component';
 import { BattleEngineService } from '../../services/battleengine-service.service';
 import { isPokemon } from '../../types/pokemon';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-mon-card',
@@ -19,6 +20,7 @@ import { isPokemon } from '../../types/pokemon';
     AvatarComponent,
     TextComponent,
     OutlinedButtonComponent,
+    TranslateModule,
   ],
   templateUrl: './mon-card.component.html',
 })

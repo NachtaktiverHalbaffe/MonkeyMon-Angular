@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Monkey, MonkeySchema } from '../types/monkey';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 interface MonkeyApiGetResponse {
   content: MonkeyApiPostResponse[];
@@ -56,6 +57,13 @@ interface MonkeyApiPostResponse {
 export class MonkeyApiService {
   monkeys: Monkey[] = [];
   http: HttpClient = inject(HttpClient);
+  errorMsgLabel: string = '';
+
+  constructor(translate: TranslateService) {
+    translate.get('monkeyapi.error').subscribe((translation) => {
+      this.errorMsgLabel = translation;
+    });
+  }
 
   getAllMonkeys(): Observable<Monkey[]> {
     return this._fetchMonkeys();
@@ -68,7 +76,7 @@ export class MonkeyApiService {
       })
       .pipe(
         catchError((error, caught) => {
-          const errMsg = `Couldnt load Monkeys from the internet: ${error.message}`;
+          const errMsg = `${this.errorMsgLabel}: ${error.message}`;
           import('ngx-sonner')
             .then((module) => module.toast)
             .then((toast) => toast.error(errMsg));

@@ -18,31 +18,35 @@
   </div>
 
   <div class="flex flex-col w-full mb-8">
-    <app-stat-bar [value]="mon.hp" maxValue="255" label="HP"></app-stat-bar>
+    <app-stat-bar
+      [value]="mon.hp"
+      maxValue="255"
+      label="{{ 'pokemon.hp' | translate }}"
+    ></app-stat-bar>
     <app-stat-bar
       [value]="mon.attack"
       maxValue="190"
-      label="Attack"
+      label="{{ 'pokemon.attack' | translate }}"
     ></app-stat-bar>
     <app-stat-bar
       [value]="mon.defense"
       maxValue="250"
-      label="Defense"
+      label="{{ 'pokemon.defense' | translate }}"
     ></app-stat-bar>
     <app-stat-bar
       [value]="mon.specialAttack"
       maxValue="194"
-      label="Sp. Attack"
+      label="{{ 'pokemon.specialAttack' | translate }}"
     ></app-stat-bar>
     <app-stat-bar
       [value]="mon.specialDefense"
       maxValue="250"
-      label="Sp. Defense"
+      label="{{ 'pokemon.specialDefense' | translate }}"
     ></app-stat-bar>
     <app-stat-bar
       [value]="mon.speed"
       maxValue="200"
-      label="Speed"
+      label="{{ 'pokemon.speed' | translate }}"
     ></app-stat-bar>
   </div>
   <div
@@ -51,12 +55,12 @@
     <app-outlined-button
       class="flex items-center justify-center w-full"
       (click)="sendFighter()"
-      >Send to arena as fighter</app-outlined-button
+      >{{ "moncard.send_fighter" | translate }}</app-outlined-button
     >
     <app-outlined-button
       class="flex items-center justify-center w-full"
       (click)="sendOpponent()"
-      >Send to arena as opponent</app-outlined-button
+      >{{ "moncard.send_opponent" | translate }}</app-outlined-button
     >
   </div>
 </app-card>
