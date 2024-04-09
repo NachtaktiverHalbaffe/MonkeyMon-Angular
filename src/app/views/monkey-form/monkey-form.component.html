@@ -37,9 +37,17 @@
           [type]="field.type"
           [formControlName]="field.key"
         />
+        @if(monkeyForm.get(field.key)?.invalid &&
+        (monkeyForm.get(field.key)?.dirty
+        ||monkeyForm.get(field.key)?.touched)){
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          {{ monkeyForm.get(field.key)?.errors?.["zodError"] }}
+        </p>
+        } @else{
         <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
           {{ "monkey_form.descriptions." + field.key | translate }}
         </p>
+        }
       </label>
       } }
     </div>

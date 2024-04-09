@@ -7,15 +7,23 @@ import { HlmCardDirective } from '../../components/ui-card-helm/src/lib/hlm-card
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
 } from '@angular/forms';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { Monkey, MonkeySchema } from '../../types/monkey';
 import { MonkeyApiService } from '../../services/monkey-api.service';
-import { number } from 'zod';
+
+// export function zodValidator():ValidatorFn{
+//   return (control: AbstractControl): ValidationErrors | null => {
+//     const value = control.value;
+//     const key = control.
+//   }
+// }
 
 @Component({
   selector: 'app-monkey-form',
@@ -61,19 +69,204 @@ export class MonkeyFormComponent {
 
   constructor(private fb: FormBuilder, translate: TranslateService) {
     this.monkeyForm = this.fb.group({
-      name: new FormControl(''),
-      image: new FormControl(''),
-      description: new FormControl(''),
-      speciesName: new FormControl(''),
-      knownFrom: new FormControl(''),
-      strengths: new FormControl(''),
-      weaknesses: new FormControl(''),
-      hp: new FormControl(0),
-      attack: new FormControl(0),
-      defense: new FormControl(0),
-      specialAttack: new FormControl(0),
-      specialDefense: new FormControl(0),
-      speed: new FormControl(0),
+      name: new FormControl(
+        null,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: value,
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('name', monkey);
+        }
+      ),
+      image: new FormControl(null),
+      description: new FormControl(
+        null,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            description: value,
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('description', monkey);
+        }
+      ),
+      speciesName: new FormControl(
+        null,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            speciesName: value,
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('speciesName', monkey);
+        }
+      ),
+      knownFrom: new FormControl(
+        null,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            description: value,
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('description', monkey);
+        }
+      ),
+      strengths: new FormControl(
+        null,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            strength: value,
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('strength', monkey);
+        }
+      ),
+      weaknesses: new FormControl(
+        null,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            weaknesses: value,
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('weaknesses', monkey);
+        }
+      ),
+      hp: new FormControl(
+        0,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            hp: value,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('hp', monkey);
+        }
+      ),
+      attack: new FormControl(
+        0,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            hp: 1,
+            attack: value,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('attack', monkey);
+        }
+      ),
+      defense: new FormControl(
+        0,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            hp: 1,
+            attack: 1,
+            defense: value,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('defense', monkey);
+        }
+      ),
+      specialAttack: new FormControl(
+        0,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: value,
+            specialDefense: 1,
+            speed: 1,
+          };
+          return this._validateEntry('specialAttack', monkey);
+        }
+      ),
+      specialDefense: new FormControl(
+        0,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: value,
+            speed: 1,
+          };
+          return this._validateEntry('specialDefense', monkey);
+        }
+      ),
+      speed: new FormControl(
+        0,
+        (control: AbstractControl): ValidationErrors | null => {
+          const value = control.value;
+          const monkey: Monkey = {
+            name: '',
+            hp: 1,
+            attack: 1,
+            defense: 1,
+            specialAttack: 1,
+            specialDefense: 1,
+            speed: value,
+          };
+          return this._validateEntry('speed', monkey);
+        }
+      ),
     });
     // Just to get ngx-translate-extract working
     translate.get('monkey_form.labels.name');
@@ -133,6 +326,24 @@ export class MonkeyFormComponent {
       this.isPosting.set(false);
       this.error.set(true);
     }
+  }
+
+  _validateEntry(key: string, value: Monkey): ValidationErrors | null {
+    const result = MonkeySchema.safeParse(value);
+
+    if (result.success) {
+      return null;
+    }
+
+    for (let index = 0; index < result.error.issues.length; index++) {
+      const element = result.error.issues[index];
+
+      if (element.path[0] == key) {
+        return { zodError: element.message };
+      }
+    }
+
+    return null;
   }
 
   processFile(imageInput: any) {
