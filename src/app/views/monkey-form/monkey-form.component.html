@@ -1,0 +1,64 @@
+<section hlmCard class="w-full">
+  <div hlmCardHeader>
+    <h1 hlmCardTitle>{{ "monkey_form.title" | translate }}</h1>
+  </div>
+
+  <form
+    class="w-full"
+    hlmCardContent
+    (ngSubmit)="onSubmit($event)"
+    [formGroup]="monkeyForm"
+  >
+    <div>
+      @for(field of formFieldBuilder; track field.key){ @if(field.type=="file"){
+      <label hlmLabel class="w-full my-4">
+        {{ "monkey_form.labels." + field.key | translate }}
+        <input
+          #imageInput
+          hlmInput
+          accept="image/*"
+          (change)="processFile(imageInput)"
+          class="w-full h-fit my-4 py-4"
+          placeholder="{{ 'monkey_form.labels.' + field.key | translate }}"
+          type="file"
+          [formControlName]="field.key"
+        />
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          {{ "monkey_form.descriptions." + field.key | translate }}
+        </p>
+      </label>
+      } @else {
+      <label hlmLabel class="w-full my-4">
+        {{ "monkey_form.labels." + field.key | translate }}
+        <input
+          hlmInput
+          class="w-full my-4 py-4"
+          placeholder="{{ 'monkey_form.labels.' + field.key | translate }}"
+          [type]="field.type"
+          [formControlName]="field.key"
+        />
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          {{ "monkey_form.descriptions." + field.key | translate }}
+        </p>
+      </label>
+      } }
+    </div>
+
+    <div class="flex items-end justify-end">
+      @if(!isPosting() && !error()){
+      <input
+        hlmInput
+        class="justify-end"
+        value="{{ 'monkey_form.placeholders.submit' | translate }}"
+        type="submit"
+      />
+      } @else if (isPosting()) {
+      <input hlmInput class="w-full" value="Processing..." type="submit" />
+      }@else if (success()) {
+      <input hlmInput class="w-full" value="Success" type="submit" />
+      }@else {
+      <input hlmInput class="w-full" value="Error" type="submit" />
+      }
+    </div>
+  </form>
+</section>

@@ -115,7 +115,10 @@ export class MonkeyApiService {
       );
   }
 
-  _postMonkey(monkey: Monkey): Observable<MonkeyApiPostResponse> {
+  _postMonkey(
+    monkey: Monkey,
+    image: File | null
+  ): Observable<MonkeyApiPostResponse> {
     const formData = new FormData();
     formData.append(
       'body',
@@ -135,6 +138,10 @@ export class MonkeyApiService {
         species_name: monkey.speciesName != '' ? monkey.speciesName : null,
       })
     );
+
+    if (image != null) {
+      formData.append('image', image);
+    }
 
     return this.http.post<MonkeyApiPostResponse>(
       'http://localhost:8080/api/v1/monkeys',
