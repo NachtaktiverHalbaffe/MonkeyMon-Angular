@@ -16,6 +16,42 @@
   "monkey_carousel": {
     "error_msg": "Konnte Monkeys nicht laden"
   },
+  "monkey_form": {
+    "descriptions": {
+      "attack": "(Optional) Angriff des Monkeys. Wird benutzt, wenn in der Arena gekämpft wird",
+      "defense": "(Optional) Verteidigung des Monkeys. Wird benutzt, wenn in der Arena gekämpft wird",
+      "description": "(Optional) Beschreibung oder Trivia über den Monkey als Charakter",
+      "hp": "(Optional) Kraftpunkte des Monkeys. Wird benutzt, wenn in der Arena gekämpft wird",
+      "image": "(Optional) Bild vom Monkey",
+      "knownFrom": "(Optional) Von welchen Film, Videospiel etc. der Monkey bekannt ist",
+      "name": "Name des Monkey",
+      "specialAttack": "(Optional) Spezial-Angriff des Monkey. Wird benutzt, wenn in der Arena gekämpft wird",
+      "specialDefense": "(Optional)Spezial-Verteidigung des Monkey. Wird benutzt, wenn in der Arena gekämpft wird",
+      "speciesName": "(Optional) Spezies des Monkey (oder zu welcher es am ehesten gehören würde)",
+      "speed": "(Optional) Initiative des Monkey. Wird benutzt, wenn in der Arena gekämpft wird",
+      "strengths": "(Optional) Was sind die Stärken des Monkey?",
+      "weaknesses": "(Optional) Was sind die Schwächen des Monkey?"
+    },
+    "labels": {
+      "attack": "Angriff",
+      "defense": "Verteidigung",
+      "description": "Beschreibung",
+      "hp": "KP",
+      "image": "Bild",
+      "knownFrom": "Bekannt aus",
+      "name": "Name",
+      "specialAttack": "Sp. Angriff",
+      "specialDefense": "Sp. Verteidigung",
+      "speciesName": "Spezies",
+      "speed": "Initiative",
+      "strengths": "Stärken",
+      "weaknesses": "Schwächen"
+    },
+    "placeholders": {
+      "submit": "Absenden"
+    },
+    "title": "Monkey erstellen"
+  },
   "monkeyapi": {
     "error": "Konnte Monkeys nicht vom Internet laden"
   },

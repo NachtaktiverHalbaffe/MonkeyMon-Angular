@@ -16,6 +16,42 @@
   "monkey_carousel": {
     "error_msg": "Couldn't load monkeys"
   },
+  "monkey_form": {
+    "descriptions": {
+      "attack": "(Optional) Attack of the Monkey. Used when fighting in Arena",
+      "defense": "(Optional) Defense of the Monkey. Used when fighting in Arena",
+      "description": "(Optional) Description or trivia about hte Monkey as an character",
+      "hp": "(Optional) Health Points of the Monkey. Used when fighting in Arena",
+      "image": "(Optional) Image which shows the monkey",
+      "knownFrom": "(Optional) From which movie, video game etc. the Monkey is known from",
+      "name": "Name of the Monkey",
+      "specialAttack": "(Optional) Special Attack of the Monkey. Used when fighting in Arena",
+      "specialDefense": "(Optional) Special Defense of the Monkey. Used when fighting in Arena",
+      "speciesName": "(Optional) Species to which the Monkey (most likely) belongs",
+      "speed": "(Optional) Speed of the Monkey. Used when fighting in Arena",
+      "strengths": "(Optional) What are the strengths of the Monkey? Can be descriptive",
+      "weaknesses": "(Optional) What are the weaknesses of the Monkey? Can be descriptive"
+    },
+    "labels": {
+      "attack": "Attack",
+      "defense": "Defense",
+      "description": "Description",
+      "hp": "HP",
+      "image": "Image",
+      "knownFrom": "Known from",
+      "name": "Name",
+      "specialAttack": "Sp. Attack",
+      "specialDefense": "Sp. Defense",
+      "speciesName": "Species",
+      "speed": "Speed",
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses"
+    },
+    "placeholders": {
+      "submit": "Submit"
+    },
+    "title": "Create Monkey"
+  },
   "monkeyapi": {
     "error": "Couldnt load Monkeys from the internet"
   },
